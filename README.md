@@ -61,6 +61,6 @@ Proje, geliştirme ortamında **tek komutla** ayağa kalkacak şekilde yapıland
 ### Adım 1: Projeyi Klonlayın
 
 ```bash
-git clone ""
+git clone "https://github.com/HalilllYlmz/SmartInventory.git"
 cd SmartInventory
 ```
