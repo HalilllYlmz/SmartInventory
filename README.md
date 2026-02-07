@@ -64,3 +64,90 @@ Proje, geliştirme ortamında **tek komutla** ayağa kalkacak şekilde yapıland
 git clone "https://github.com/HalilllYlmz/SmartInventory.git"
 cd SmartInventory
 ```
+
+### Adım 2: Bağımlılıkları Yükleyin
+
+```bash
+npm run install-all
+```
+
+### Adım 3: Başlatın
+
+```bash
+npm start
+```
+
+---
+
+## ⚠️ Önemli Uyarılar ve Yapılandırma
+
+Projeyi çalıştırmadan önce aşağıdaki durumları kontrol etmeniz
+önemlidir:
+
+### 1. Veritabanı Bağlantısı (Connection String)
+
+Proje varsayılan olarak Docker üzerindeki PostgreSQL'e bağlanır. Eğer
+kendi yerel PostgreSQL sunucunuzu kullanacaksanız veya şifreniz
+farklıysa, API klasöründeki ayarı güncelleyin:
+
+📂 `SmartInventoryAPI/appsettings.json`
+
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "Host=localhost;Port=5432;Database=SmartInventoryDb;Username=postgres;Password=sifreniz"
+}
+```
+
+---
+
+### 2. Port Çakışması
+
+- **PostgreSQL:** Eğer bilgisayarınızda halihazırda çalışan bir
+  PostgreSQL servisi varsa (Port 5432), Docker konteyneri
+  başlamayabilir.\
+  Yerel servisi durdurun veya `docker-compose.yml` içindeki portu
+  değiştirin.
+
+- **API Portu:** API varsayılan olarak **5113** portunu kullanır. Bu
+  port doluysa uygulama başlamayacaktır.
+
+---
+
+## 🛠 Kullanılan Teknolojiler
+
+Alan Teknoloji
+
+---
+
+Frontend Angular 17+, RxJS, Tailwind CSS
+Backend .NET 8, Entity Framework Core
+Database PostgreSQL
+Real-Time SignalR (WebSockets)
+Container Docker & Docker Compose
+
+---
+
+## 📂 Proje Yapısı
+
+```plaintext
+root/
+├── SmartInventoryAPI/      # .NET Backend Projesi
+│   ├── Controllers/        # API Uç Noktaları
+│   ├── Hubs/               # SignalR Gerçek Zamanlı İletişim
+│   └── docker-compose.yml  # Veritabanı Konfigürasyonu
+│
+├── SmartInventoryUI/       # Angular Frontend Projesi
+│   ├── src/app/pages/      # Sayfa Tasarımları (Dashboard, Liste)
+│   ├── src/app/services/   # API ve SignalR Servisleri
+│   └── src/assets/         # Görseller ve İkonlar
+│
+└── package.json            # Kök Dizin Başlatma Scriptleri
+```
+
+---
+
+## 👨‍💻 Geliştirici
+
+**Halil Yılmaz**
+
+---
