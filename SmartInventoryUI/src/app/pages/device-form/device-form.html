@@ -1,0 +1,90 @@
+<div class="max-w-2xl mx-auto mt-10">
+  <div class="bg-white shadow-md rounded-lg p-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">
+      {{ isEditMode ? 'Cihazı Düzenle' : 'Yeni Cihaz Ekle' }}
+    </h2>
+
+    <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="deviceName">
+          Cihaz Adı
+        </label>
+        <input
+          type="text"
+          id="deviceName"
+          formControlName="deviceName"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Örn: CNC Kontrol Paneli"
+        />
+        <p
+          *ngIf="deviceForm.get('deviceName')?.invalid && deviceForm.get('deviceName')?.touched"
+          class="text-red-500 text-xs italic mt-1"
+        >
+          Cihaz adı en az 3 karakter olmalıdır.
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="serialNumber">
+          Seri Numarası
+        </label>
+        <input
+          type="text"
+          id="serialNumber"
+          formControlName="serialNumber"
+          [class.border-red-500]="errorMessage"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Örn: SN-2024-001"
+        />
+        <p *ngIf="errorMessage" class="text-red-600 text-xs font-bold italic mt-1">
+          {{ errorMessage }}
+        </p>
+      </div>
+
+      <div class="flex gap-4 mb-6">
+        <div class="w-1/2">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="status"> Durum </label>
+          <select
+            id="status"
+            formControlName="status"
+            class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="Aktif">Aktif</option>
+            <option value="Pasif">Pasif</option>
+            <option value="Bakımda">Bakımda</option>
+          </select>
+        </div>
+
+        <div class="w-1/2">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="lastMaintenanceDate">
+            Son Bakım Tarihi
+          </label>
+          <input
+            type="date"
+            id="lastMaintenanceDate"
+            formControlName="lastMaintenanceDate"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-4">
+        <a
+          routerLink="/devices"
+          class="text-gray-500 hover:text-gray-800 font-medium cursor-pointer"
+        >
+          İptal
+        </a>
+
+        <button
+          type="submit"
+          [disabled]="deviceForm.invalid"
+          [class.opacity-50]="deviceForm.invalid"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition"
+        >
+          {{ isEditMode ? 'Güncelle' : 'Kaydet' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

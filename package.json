@@ -1,0 +1,13 @@
+{
+  "name": "smart-inventory-root",
+  "version": "1.0.0",
+  "scripts": {
+    "install-all": "npm install && cd SmartInventoryUI && npm install",
+    "docker:up": "cd SmartInventoryAPI && docker-compose up -d --build",
+    "apps:run": "concurrently -n \"API,UI\" -c \"bgBlue.bold,bgMagenta.bold\" \"dotnet watch run --project SmartInventoryAPI/SmartInventoryAPI.csproj\" \"npm start --prefix SmartInventoryUI\"",
+    "start": "npm run docker:up && npm run apps:run"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

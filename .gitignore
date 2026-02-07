@@ -1,0 +1,17 @@
+# --- Node / Angular ---
+node_modules/
+dist/
+.angular/
+package-lock.json # Opsiyonel: Bazen kalması istenir ama bazen çakışma yapar
+
+# --- .NET / C# ---
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+appsettings.Development.json # Güvenlik için (Şifreler varsa)
+
+# --- OS Files ---
+.DS_Store
+Thumbs.db
